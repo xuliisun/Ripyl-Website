@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Totally Accurate History Camp | Summer Model UN Club</title>
+    <style>
+        /* CSS RESET & VARIABLES */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --deep-navy: #0B1F3B;
+            --forest-green: #1F6B4E;
+            --warm-gold: #C9A227;
+            --off-white: #F5F7FA;
+            --slate-grey: #5B6770;
+            --white: #ffffff;
+        }
+
+        body {
+            background-color: var(--off-white);
+            color: var(--deep-navy);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-size: 1.15rem;
+            line-height: 1.75;
+        }
+
+        /* TYPOGRAPHY HIERARCHY */
+        h1, h2, h3, .logo {
+            font-family: "Georgia", "Times New Roman", serif;
+            font-weight: 700;
+        }
+
+        /* NAVIGATION */
+        header {
+            background-color: var(--deep-navy);
+            color: var(--white);
+            padding: 1.5rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-bottom: 3px solid var(--warm-gold);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.75rem;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: 0.5px;
+        }
+
+        .logo span {
+            color: var(--warm-gold);
+        }
+
+        nav a {
+            color: var(--off-white);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: color 0.2s ease-in-out;
+        }
+
+        nav a:hover {
+            color: var(--warm-gold);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            background: linear-gradient(rgba(11, 31, 59, 0.88), rgba(11, 31, 59, 0.95)), 
+                        url('https://images.unsplash.com/photo-1526666923127-b2970f64b422?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            color: var(--white);
+            text-align: center;
+            padding: 8rem 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3.75rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            max-width: 850px;
+            margin: 0 auto 3rem auto;
+            color: var(--off-white);
+            font-weight: 300;
+        }
+
+        /* BUTTONS */
+        .btn {
+            background-color: var(--forest-green);
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.15rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s ease-in-out;
+            display: inline-block;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+        }
+
+        .btn:hover {
+            background-color: #164e39;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+
+        /* MAIN LAYOUT STRUCTURE */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 6rem 2rem;
+        }
+
+        /* CENTERED SECTION HEADER STYLING */
+        .section-header {
+            text-align: center;
+            margin-bottom: 4.5rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.75rem;
+            color: var(--deep-navy);
+            margin-bottom: 1.25rem;
+        }
+
+        .divider {
+            height: 4px;
+            width: 80px;
+            background-color: var(--warm-gold);
+            margin: 0 auto 1.75rem auto;
+            border-radius: 2px;
+        }
+
+        .section-header p {
+            color: var(--slate-grey);
+            font-size: 1.25rem;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        /* COMPLETELY CENTERED GRID FOR CARDS/BOXES */
+        .classes-grid-wrapper {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin-bottom: 6rem;
+        }
+
+        .classes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            width: 100%;
+            justify-content: center; /* Centers the boxes horizontally inside the grid container */
+            justify-items: center;   /* Anchors single row wrapping layouts cleanly to the middle */
+        }
+
+        .class-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border: 1px solid rgba(11, 31, 59, 0.08);
+            border-top: 6px solid var(--forest-green);
+            transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            width: 100%;
+            max-width: 360px; /* Maintains elegant dimensions while centered */
+        }
+
+        .class-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+        }
+
+        .class-info {
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+        }
+
+        .class-tag {
+            background-color: rgba(31, 107, 78, 0.08);
+            color: var(--forest-green);
+            padding: 0.35rem 1.25rem;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.25rem;
+            display: inline-block;
+            font-family: "Georgia", serif;
+        }
+
+        .class-info h3 {
+            font-size: 1.65rem;
+            margin-bottom: 1rem;
+            color: var(--deep-navy);
+            line-height: 1.3;
+        }
+
+        .class-info p {
+            color: var(--slate-grey);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+
+        .class-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            border-top: 1px solid #eef2f5;
+            padding-top: 1.25rem;
+            font-size: 1.05rem;
+            color: var(--slate-grey);
+            font-weight: 500;
+            width: 100%;
+        }
+
+        /* REGISTRATION FORM SECTION */
+        .booking-section {
+            background-color: var(--white);
+            padding: 4rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            border: 1px solid #eef2f5;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.75rem; }
+            .hero p { font-size: 1.2rem; }
+            .booking-section { padding: 2rem; }
+            .form-grid { grid-template-columns: 1fr; }
+            .form-group.full-width { grid-column: span 1; }
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        label {
+            font-weight: 600;
+            margin-bottom: 0.65rem;
+            color: var(--deep-navy);
+            font-size: 1.05rem;
+        }
+
+        input, select, textarea {
+            padding: 1rem;
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            background-color: var(--off-white);
+            color: var(--deep-navy);
+            transition: all 0.2s ease;
+            text-align: center;
+            text-align-last: center;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--forest-green);
+            box-shadow: 0 0 0 4px rgba(31, 107, 78, 0.15);
+            background-color: var(--white);
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background-color: var(--warm-gold);
+            color: var(--deep-navy);
+            width: 100%;
+            padding: 1.25rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 2rem;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .submit-btn:hover {
+            background-color: #b08d20;
+            color: var(--white);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--deep-navy);
+            color: var(--off-white);
+            text-align: center;
+            padding: 3.5rem 2rem;
+            margin-top: 6rem;
+            font-size: 1.05rem;
+            border-top: 4px solid var(--forest-green);
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">🏛️ Totally Accurate <span>History Camp</span></a>
+            <nav>
+                <a href="#about">About</a>
+                <a href="#schedule">Weekly Schedule</a>
+                <a href="#book">Book Now</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>Rewrite the Past. Shape the Future.</h1>
+        <p>Step into the shoes of global diplomats and historical legends. Debate world-changing decisions, untangle complex global systems, and master history through high-stakes Model UN simulations.</p>
+        <a href="#book" class="btn">Reserve a Delegate Seat</a>
+    </section>
+
+    <main class="container">
+
+        <section id="about" class="section-header">
+            <h2>Where Diplomacy Meets History</h2>
+            <div class="divider"></div>
+            <p>We believe learning history shouldn't just be about memorizing dates. Our summer club combines rigorous historical research with the thrilling mechanics of Model United Nations, teaching students to collaborate, negotiate, and lead.</p>
+        </section>
+
+        <section id="schedule">
+            <div class="section-header">
+                <h2>The Summer Intensive Syllabus</h2>
+                <div class="divider"></div>
+                <p>Five days. Five historic crises. One unmissable simulation experience. Check out our comprehensive week-long track below.</p>
+            </div>
+
+            <div class="classes-grid-wrapper">
+                <div class="classes-grid">
+                    <div class="class-card">
+                        <div class="class-info">
+                            <span class="class-tag">Monday</span>
+                            <h3>Boston Tea Party & American Revolution</h3>
+                            <p>Step into the high-stakes debate between colonial patriots and the British Crown. Navigate taxation without representation, trade embargoes, and the spark of revolution.</p>
+                            <div class="class-meta">
+                                <span>Focus: Diplomacy & Trade</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="class-card" style="border-top-color: var(--warm-gold);">
+                        <div class="class-info">
+                            <span class="class-tag" style="color: var(--warm-gold); background: rgba(201,162,39,0.08);">Tuesday</span>
+                            <h3>The Congress of Vienna</h3>
+                            <p>Reconstruct the shattered map of Europe following the Napoleonic Wars. Balance competing imperial ambitions to forge a lasting continental peace.</p>
+                            <div class="class-meta">
+                                <span>Focus: European Geopolitics</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="class-card">
+                        <div class="class-info">
+                            <span class="class-tag">Wednesday</span>
+                            <h3>The Great Depression</h3>
+                            <p>Simulate the emergency summits of the 1930s. Protect international markets, battle skyrocketing unemployment, and negotiate complex economic rescue packages.</p>
+                            <div class="class-meta">
+                                <span>Focus: Global Macroeconomics</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="class-card" style="border-top-color: var(--warm-gold);">
+                        <div class="class-info">
+                            <span class="class-tag" style="color: var(--warm-gold); background: rgba(201,162,39,0.08);">Thursday</span>
+                            <h3>The 2008 Financial Crisis</h3>
+                            <p>Take control of central banks and global ministries during the modern era's most volatile market crash. Prevent a total systemic collapse through rapid diplomacy.</p>
+                            <div class="class-meta">
+                                <span>Focus: Trade & Monetary Systems</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="class-card">
+                        <div class="class-info">
+                            <span class="class-tag">Friday</span>
+                            <h3>Pax Americana</h3>
+                            <p>Navigate the modern architecture of global governance, international treaties, and collective security alliances under the contemporary world system.</p>
+                            <div class="class-meta">
+                                <span>Focus: Global Security & Diplomacy</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="book" class="booking-section">
+            <div class="section-header" style="margin-bottom: 3rem;">
+                <h2>Delegate Registration Portal</h2>
+                <div class="divider"></div>
+                <p>Complete the secure enrollment request below to claim your student's position in this summer intensive week.</p>
+            </div>
+            
+            <form id="bookingForm" onsubmit="handleBooking(event)">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="studentName">Student Full Name</label>
+                        <input type="text" id="studentName" required placeholder="e.g., Jane Doe">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="parentEmail">Parent / Guardian Email</label>
+                        <input type="email" id="parentEmail" required placeholder="e.g., guardian@domain.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="studentAge">Student Academic Cohort</label>
+                        <select id="studentAge" required>
+                            <option value="">Select Level...</option>
+                            <option value="middle-school">Middle School Cohort (Grades 6-8)</option>
+                            <option value="high-school">High School Cohort (Grades 9-12)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="campSession">Select Summer Pass Option</label>
+                        <select id="campSession" required>
+                            <option value="">Select a Session Week...</option>
+                            <option value="week-1">Session Alpha Intensive: July 6 — July 10 ($450)</option>
+                            <option value="week-2">Session Beta Intensive: August 3 — August 7 ($450)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="notes">Prior Model UN or History Background (Optional)</label>
+                        <textarea id="notes" rows="4" placeholder="Mention any academic interests or experience that will help us place your delegate..."></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit Formal Reservation</button>
+            </form>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Totally Accurate History Camp. All rights reserved.</p>
+        <p style="color: var(--slate-grey); font-size: 0.95rem; margin-top: 0.5rem; font-weight: 400;">Fostering historical analysis, elite diplomacy, and critical rhetoric.</p>
+    </footer>
+
+    <script>
+        function handleBooking(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('studentName').value;
+            const session = document.getElementById('campSession').options[document.getElementById('campSession').selectedIndex].text;
+            
+            alert(`Registration Submission Received.\n\nDelegate: ${name}\nChosen Week: ${session}\n\nA formal enrollment confirmation, packing list, and comprehensive simulation syllabus have been dispatched to the designated parent email address.`);
+            
+            document.getElementById('bookingForm').reset();
+        }
+    </script>
+</body>
+</html>
