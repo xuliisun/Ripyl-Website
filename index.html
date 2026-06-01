@@ -209,7 +209,7 @@
             font-weight: 400;
         }
 
-        /* UPDATED: FLEXBOX CENTERED WRAPPER FOR SYLLABUS CARDS */
+        /* FLEXBOX CENTERED WRAPPER FOR SYLLABUS CARDS */
         .classes-grid-wrapper {
             display: flex;
             justify-content: center;
@@ -223,7 +223,7 @@
             gap: 2.5rem;
             max-width: 1200px;
             width: 100%;
-            justify-content: center; /* This automatically handles centering remaining/bottom row items */
+            justify-content: center;
         }
 
         .class-card {
@@ -237,8 +237,8 @@
             display: flex;
             flex-direction: column;
             text-align: center;
-            width: calc(33.333% - 1.67rem); /* Spans 3 columns cleanly on desktop */
-            min-width: 320px; /* Prevents text crowding */
+            width: calc(33.333% - 1.67rem);
+            min-width: 320px;
         }
 
         .class-card:hover {
@@ -294,6 +294,145 @@
             width: 100%;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+        }
+
+        /* PRICING SECTION STYLING */
+        .pricing-section {
+            margin-bottom: 7rem;
+        }
+
+        .table-wrapper {
+            background-color: var(--white);
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid rgba(11, 31, 59, 0.05);
+            overflow: hidden;
+            max-width: 950px;
+            margin: 0 auto;
+        }
+
+        .pricing-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .pricing-table th, .pricing-table td {
+            padding: 1.5rem 2rem;
+        }
+
+        .pricing-table th {
+            background-color: var(--deep-navy);
+            color: var(--white);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .pricing-table tr {
+            border-bottom: 1px solid #EDF2F7;
+        }
+
+        .pricing-table tr:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-table tr:nth-child(even) td {
+            background-color: #F8FAFC;
+        }
+
+        .pass-name {
+            font-weight: 700;
+            color: var(--deep-navy);
+            font-size: 1.15rem;
+        }
+
+        .pass-price {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--forest-green);
+            font-size: 1.5rem;
+        }
+
+        .pass-features {
+            color: var(--slate-grey);
+            font-size: 1rem;
+        }
+
+        /* MEET THE TEAM SECTION STYLING */
+        .team-section {
+            margin-bottom: 7rem;
+        }
+
+        .team-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+            justify-content: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .team-card {
+            background-color: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            border: 1px solid rgba(11, 31, 59, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: center;
+            width: calc(33.333% - 1.67rem);
+            min-width: 300px;
+            padding: 3rem 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .team-avatar {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background-color: #E2E8F0;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--deep-navy);
+            border: 3px solid var(--warm-gold);
+        }
+
+        .team-avatar svg {
+            width: 50px;
+            height: 50px;
+            fill: var(--slate-grey);
+        }
+
+        .team-card h3 {
+            font-size: 1.4rem;
+            color: var(--deep-navy);
+            margin-bottom: 0.25rem;
+        }
+
+        .team-role {
+            color: var(--forest-green);
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .team-bio {
+            color: var(--slate-grey);
+            font-size: 1rem;
+            line-height: 1.6;
         }
 
         /* REGISTRATION FORM SECTION */
@@ -397,8 +536,8 @@
         }
 
         @media (max-width: 1024px) {
-            .class-card {
-                width: calc(50% - 1.25rem); /* Becomes a clean 2-column layout on tablets with the remaining 5th card perfectly centered alone on the bottom row */
+            .class-card, .team-card {
+                width: calc(50% - 1.25rem);
             }
         }
 
@@ -408,7 +547,10 @@
             .booking-section { padding: 3rem 1.5rem; }
             .form-grid { grid-template-columns: 1fr; }
             .form-group.full-width { grid-column: span 1; }
-            .class-card { width: 100%; } /* Stacked completely on mobile profiles */
+            .class-card, .team-card { width: 100%; }
+            .pricing-table th, .pricing-table td { padding: 1rem; }
+            .pass-name { font-size: 1rem; }
+            .pass-price { font-size: 1.25rem; }
             nav { display: none; }
         }
 
@@ -441,6 +583,8 @@
             <nav>
                 <a href="#about">About</a>
                 <a href="#schedule">Weekly Schedule</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#team">Our Team</a>
                 <a href="#book">Book Now</a>
             </nav>
         </div>
@@ -523,6 +667,66 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="pricing" class="pricing-section">
+            <div class="section-header">
+                <h2>Tuition & Pass Options</h2>
+                <div class="divider"></div>
+                <p>Transparent pricing built around an elite, comprehensive summer program. Select the tier that matches your delegate's ambitions.</p>
+            </div>
+
+            <div class="table-wrapper">
+                <table class="pricing-table">
+                    <thead>
+                        <tr>
+                            <th>Pass Option</th>
+                            <th>Tuition</th>
+                            <th>Inclusions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="pass-name">Standard Summer Pass</td>
+                            <td class="pass-price">$450</td>
+                            <td class="pass-features">Full 5-day access, all standard daily simulation materials, expert guidance, and certificate of completion.</td>
+                        </tr>
+                        <tr>
+                            <td class="pass-name">Premium Delegate Pass</td>
+                            <td class="pass-price">$550</td>
+                            <td class="pass-features">Standard Pass inclusions plus custom pre-camp dossier research booklets, 1-on-1 strategy evaluation, and an elite research guide.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="team" class="team-section">
+            <div class="section-header">
+                <h2>Meet Your Leadership Team</h2>
+                <div class="divider"></div>
+                <p>Get to know the educators, policy experts, and historical analysts dedicated to training the next generation of global strategists.</p>
+            </div>
+
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s1.79-4 4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                    </div>
+                    <h3>Xuliang Sun</h3>
+                    <span class="team-role">Executive Director</span>
+                    <p class="team-bio">Former geopolitical consultant with over a decade of experience directing collegiate Model UN circuits and creating historical curricula.</p>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s1.79-4 4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                    </div>
+                    <h3>Eric Yu</h3>
+                    <span class="team-role">Executive Director</span>
+                    <p class="team-bio">Specialist in macroeconomics and international trade systems. Evelyn ensures our simulated crisis materials are accurate and deeply educational.</p>
                 </div>
             </div>
         </section>
